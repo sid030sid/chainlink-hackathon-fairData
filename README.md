@@ -1,4 +1,4 @@
-# Chainlink Fall Hackathon (OCTOBER 14 - NOVEMBER 18): Transparent requests on mongodb database
+# Chainlink Fall Hackathon (October 14 - November 18): Transparent requests on mongodb database
 ## Tech-Stack
 - Solidity for smart contract on EVM which traces interaction with data and thus making requests on data transparent
 - MongoDb Atlas for NoSQL database and serverless database API
