@@ -1,1 +1,2 @@
-request data
+check out if we use the correct adapter it seems it is relevant for the return type: --> we seem to have the correct type since it is the job for returning string: https://docs.chain.link/docs/any-api/testnet-oracles/
+upload api to heroku and make it thus public and thus callable by the smart contract
