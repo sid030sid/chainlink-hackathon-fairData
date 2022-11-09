@@ -7,9 +7,12 @@ const User = new mongoose.Schema({
         type : String,
         required : true
     },
-    personalData : {
-        name : String,
-        birthday : String
+    personalData : {   
+        type : {
+            name : String,
+            birthday : String
+        },
+        required : true
     }
 })
 

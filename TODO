@@ -1,2 +1,1 @@
-make from component to a one that it is not relying on onSubmit way of sending form
-manually add two users to mongoDb via postman (one who will decline the request on personal data and one who will accept it, thus two new ethereum addresses are necessariy)
+request data
