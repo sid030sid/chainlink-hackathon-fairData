@@ -12,13 +12,9 @@ router.route("/").get((req, res)=>{
 
 //get personal data based on walletAddres
 router.route("/:walletAddress").get((req, res)=>{
-    console.log(req.query.walletAddress)
-    User.find({walletAddress : req.query.walletAddress})
+    User.find({walletAddress : req.params.walletAddress})
     .then(user => {
-        res.send({
-            param : req.query.walletAddress,
-            personalData : user.personalData
-        })
+        res.send(user[0].personalData)
     })
     .catch(err => console.log(err))
 });

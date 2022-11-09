@@ -8,11 +8,8 @@ const User = new mongoose.Schema({
         required : true
     },
     personalData : {
-        type : {
-            name : String,
-            birthday : String
-        },
-        required : true
+        name : String,
+        birthday : String
     }
 })
 
