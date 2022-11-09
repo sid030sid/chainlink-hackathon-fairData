@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,13 +17,18 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function Form() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  //state variables
+  const [walletAddress, setWalletAddress] = useState('')
+  const [purpose, setPurpose] = useState('')
+  const [nameRequest, setNameRequest] = useState(false)
+  const [birthdayRequest, setBirthdayRequest] = useState(false)
+  const [zkAdulthoodRequest, setZkAdulthoodRequest] = useState(false)
+
+  const request = async () => {
+    for (const [i, value] of [walletAddress, purpose, nameRequest, birthdayRequest, zkAdulthoodRequest].entries()) {
+      console.log('%d: %s', i, value);
+    }
   };
 
   return (
@@ -45,7 +50,7 @@ export default function Form() {
             Transparently request personal data - directly from its owner - based on Ethereum wallet address. 
             If the owner of the requested personal data allows usage, you will get a fairData certificate.
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -54,6 +59,7 @@ export default function Form() {
               label="Ethereum Address"
               name="walletAddress"
               autoFocus
+              onChange={(e)=>setWalletAddress(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -62,27 +68,28 @@ export default function Form() {
               name="purpose"
               label="Purpose"
               id="purpose"
+              onChange={(e)=>setPurpose(e.target.value)}
             />
             <Typography component="h5" variant="h5">
                 Requested data:
             </Typography>
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" onChange={(e)=>setNameRequest(e.target.checked)}/>}
               label="name"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" onChange={(e)=>setBirthdayRequest(e.target.checked)}/>}
               label="birthday"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" onChange={(e)=>setZkAdulthoodRequest(e.target.checked)}/>}
               label="ZK-Proof of adulthood"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={request}
             >
               Request
             </Button>

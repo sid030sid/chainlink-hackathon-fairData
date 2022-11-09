@@ -5,12 +5,6 @@ import Form from '../components/Form'
 
 
 function Home(props) {
-
-    //state variables
-    const [walletAddress, setWalletAddress] = useState('')
-    const [purpose, setPurpose] = useState('')
-    const [nameRequest, setNameRequest] = useState(false)
-    const [birthdayRequest, setBirthdayRequest] = useState(false)
     
     return(
         <div>
