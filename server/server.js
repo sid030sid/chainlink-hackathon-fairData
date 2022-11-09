@@ -20,7 +20,7 @@ connection.once("open", ()=>{
 
 
 //api endpoints
-const userRouter = require("./routes/user");
+const userRouter = require("./routes/user-route");
 app.use("/app/user", userRouter);
 
 app.listen(PORT, () => {

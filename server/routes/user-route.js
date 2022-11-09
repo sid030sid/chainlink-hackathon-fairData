@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let User = require('.:/schemas/user-schema');
+let User = require('../schemas/user-schema');
 
 //test endpoint by calling: http://localhost:3001/app/user/
 router.route("/").get((req, res)=>{
