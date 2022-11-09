@@ -1,0 +1,25 @@
+{
+  "name": "oracle_hackathon_transparent_request_on_mongodb",
+  "version": "1.0.0",
+  "description": "- Solidity for smart contract on EVM which traces interaction with data and thus making requests on data transparent\r - MongoDb Atlas for NoSQL database and serverless database API\r - Chainlink's External Adapter as middleman between smart contract and database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sid030sid/chainlink_hackathon_transparent_request_on_mongodb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sid030sid/chainlink_hackathon_transparent_request_on_mongodb/issues"
+  },
+  "homepage": "https://github.com/sid030sid/chainlink_hackathon_transparent_request_on_mongodb#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
+  }
+}

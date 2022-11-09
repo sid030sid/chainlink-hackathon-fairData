@@ -1,0 +1,1 @@
+manually add two users to mongoDb via postman (one who will decline the request on personal data and one who will accept it, thus two new ethereum addresses are necessariy)
