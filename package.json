@@ -4,6 +4,7 @@
   "description": "- Solidity for smart contract on EVM which traces interaction with data and thus making requests on data transparent\r - MongoDb Atlas for NoSQL database and serverless database API\r - Chainlink's External Adapter as middleman between smart contract and database",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev" : "concurrently \"cd server && nodemon server.js\" \"cd client && npm run start\"",
     "start": "concurrently \"cd server && node server.js\" \"cd client && npm run start\""

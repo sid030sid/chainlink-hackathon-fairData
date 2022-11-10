@@ -23,6 +23,40 @@ connection.once("open", ()=>{
 const userRouter = require("./routes/user-route");
 app.use("/app/user", userRouter);
 
+//for production
+// getting and storing the current directory path
+const path = __dirname + "/";
+
+// once deployed all files need to be recognised by the app so that the node server can use them
+if(process.env.NODE_ENV === "production"){
+  app.use(express.static(path + 'node_modules/'))
+  app.use(express.static(path + 'css/'));
+  app.use(express.static(path + 'js/'));
+  app.use(express.static(path +'../client/build/'));
+
+  app.get("/", (req, res) => {
+    res.status(200).sendFile(path + "../client/build/index.html");
+  });
+
+  app.get("/about", (req, res) => {
+    res.status(200).sendFile(path + "../client/build/index.html");
+  }); 
+
+  app.get("/projects", (req, res) => {
+    res.status(200).sendFile(path + "../client/build/index.html");
+  }); 
+
+  app.get("/unbiasedTwin/:jobId", (req, res) => {
+    res.status(200).sendFile(path + "../client/build/index.html");
+  }); 
+};
+
+if(process.env.NODE_ENV === "production"){
+  app.get("*", (req, res) => {
+    res.status(200).sendFile(path + "../client/build/index.html");
+  });  
+};
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}. Follow link: `);
 });
