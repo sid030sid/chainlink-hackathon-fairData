@@ -69,10 +69,11 @@ contract FairDataProtocolTest is ChainlinkClient, ConfirmedOwner {
         birthday = _birthday;
     }
 
-    function zkProofAdulthood () public returns (bytes32 requestId) {
+    function zkProofAdulthood (string memory _address) public returns (bytes32 requestId) {
+        //test with address: 0xd04a70063a8383F1142737fFb8C53527907C88eC
         address memory jobIdUint = "ca98366cc7314957b8c012c72f05aeeb";
         Chainlink.Request memory req = buildChainlinkRequest(jobIdUint, address(this), this.fulfillZkProofAdulthood.selector);
-        req.add('get', 'https://fair-data.herokuapp.com/app/user/0xd04a70063a8383F1142737fFb8C53527907C88eC');
+        req.add('get', string.concat('https://fair-data.herokuapp.com/app/user/', _address));
         req.add('path', 'birthday');
 
         // Sends the request
