@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const EventEmmiter = require('events')
 const http = require('http');
 
 require("dotenv").config(); // for the environment variable to store URI calling mongoDB
@@ -57,6 +58,14 @@ if(process.env.NODE_ENV === "production"){
     res.status(200).sendFile(path + "../client/build/index.html");
   });  
 };
+
+const emitter = new EventEmmiter()
+
+//event stops the automation in case of error
+emitter.on("stopHerokuApp", () => {
+  clearInterval(pingHerokuApp)
+  console.log("Pinging of HerokuApp stopped!")
+})
 
 // ping heroku app so that it is not put to sleep after 30 minutes of no call
 var pingHerokuApp = setInterval(function() {
