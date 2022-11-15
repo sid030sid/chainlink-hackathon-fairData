@@ -1,35 +1,22 @@
 //SPDX-License-Identifier: MIT
+
+//uploaded as 0x3616803401ebcb8dd110bb81f8da51148cd669ef
 pragma solidity ^0.8.12;
 
-//deployed at goerli: 0x1358c6dad9762722af1e6ae8a25ca78a4ce98cc1 (with localhost as url)
-//deployed contract with general url: 0x02a5e6ae9e7cd22ec08b31f4433095344b9f76dd
-//checksummed version: 0x02a5e6Ae9e7cD22eC08b31F4433095344b9f76dD
-
-//newest contract with certification code: 0xb821e9b9853ca5ca71d20a853aff0dd1f864d50e --> checksummed: 0xb821E9B9853CA5ca71D20A853AfF0dD1F864d50e
-//should work contract: 0xeaee5748f57cfe58a061848285e9911962a4df2f checksummend address:0xEaeE5748f57cFe58a061848285E9911962A4dF2f
-//this should work: 0x8709753b99eab8cf7142e352f67cfca8e65c68ef
 import "@openzeppelin/contracts/utils/Strings.sol";
 import '@chainlink/contracts/src/v0.8/ChainlinkClient.sol';
 import '@chainlink/contracts/src/v0.8/ConfirmedOwner.sol';
 
-contract FairDataProtocol is ChainlinkClient, ConfirmedOwner {
+contract FairDataProtocolTest is ChainlinkClient, ConfirmedOwner {
 
     //for testing purposes:
     string public name;
     string public birthday;
 
+    event AdulthoodProof(bool adult);
+
     //real contract code
     address creator = msg.sender; //uploader of contract gets facilitation fee
-
-    struct FairDataCertificate {
-        address dataSeeker; //third party which rightfully gets access to personal data
-        address dataOwner; //user who owns personal data
-        bytes32 requestId;
-        bool nameRequested;
-        bool birthdayRequested;
-    }
-    uint certificateCount = 0;
-    mapping (uint => FairDataCertificate) certificates;
     
     //for chainlink's any api serivce
     using Chainlink for Chainlink.Request;
@@ -60,21 +47,13 @@ contract FairDataProtocol is ChainlinkClient, ConfirmedOwner {
      */
 
       //test with _fromWalletAddress =  "0xDD098205cA88D22ef9dCf666d9590c5E065e37B7"
-    function requestPersonalData(address _from, string memory _url) public payable returns (bytes32 requestId) {
-
-        (bool paymentAccepted, ) = _from.call{value: msg.value}("");
-       
-        require(paymentAccepted == true, "Request on personal data denied!");
-
-        //issue first half of certificate
-        certificates[certificateCount] = FairDataCertificate(msg.sender, _from, 0, false, false);
-        certificateCount++;
+    function requestPersonalData() public payable returns (bytes32 requestId) {
 
         //get personal data if owner of said personal data signs transaction
         Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), this.fulfillMultipleParameters.selector);
-        req.add('urlName', _url);
+        req.add('urlName', 'https://fair-data.herokuapp.com/app/user/0xd04a70063a8383F1142737fFb8C53527907C88eC');
         req.add('pathName', 'name');
-        req.add('urlBirthday', _url);
+        req.add('urlBirthday', 'https://fair-data.herokuapp.com/app/user/0xd04a70063a8383F1142737fFb8C53527907C88eC');
         req.add('pathBirthday', 'birthday');
 
         //Sends the request
@@ -86,11 +65,35 @@ contract FairDataProtocol is ChainlinkClient, ConfirmedOwner {
      */
     function fulfillMultipleParameters (bytes32 _requestId, string memory _name, string memory _birthday) public recordChainlinkFulfillment(_requestId) {
         emit RequestMultipleFulfilled(_requestId, _name, _birthday);
-        certificates[certificateCount].requestId = _requestId;
-        certificates[certificateCount].nameRequested = true;
-        certificates[certificateCount].birthdayRequested = true;
         name = _name;
         birthday = _birthday;
+    }
+
+    function zkProofAdulthood () public returns (bytes32 requestId) {
+        address memory jobIdUint = "ca98366cc7314957b8c012c72f05aeeb";
+        Chainlink.Request memory req = buildChainlinkRequest(jobIdUint, address(this), this.fulfillZkProofAdulthood.selector);
+        req.add('get', 'https://fair-data.herokuapp.com/app/user/0xd04a70063a8383F1142737fFb8C53527907C88eC');
+        req.add('path', 'birthday');
+
+        // Sends the request
+        return sendChainlinkRequest(req, fee);
+    }
+
+    function fulfillZkProofAdulthood (bytes32 _requestId, uint _birthday) public recordChainlinkFulfillment(_requestId) {
+        if(_birthday + 18 * 365 days > block.timestamp){
+            emit AdulthoodProof(true);
+        }else{
+            emit AdulthoodProof(false);
+        }
+    }
+
+    //_birthday should be in unix epoch format format (=seconds after 1970-01-01 till _birthday date)
+    function checkAdulthood(uint _birthday) public {
+        if(uint(_birthday) + 18 * 365 days > block.timestamp){
+            emit Adulthood(true);
+        }else{
+            emit Adulthood(false);
+        }
     }
 
     /**

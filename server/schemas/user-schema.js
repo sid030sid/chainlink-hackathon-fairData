@@ -10,7 +10,7 @@ const User = new mongoose.Schema({
     personalData : {   
         type : {
             name : String,
-            birthday : String
+            birthday : Number //in UNIX epoch format
         },
         required : true
     }

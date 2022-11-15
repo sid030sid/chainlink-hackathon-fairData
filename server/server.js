@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const http = require('http');
 
 require("dotenv").config(); // for the environment variable to store URI calling mongoDB
 const PORT = process.env.PORT || 3001; //declare port to which server listens
@@ -56,6 +57,11 @@ if(process.env.NODE_ENV === "production"){
     res.status(200).sendFile(path + "../client/build/index.html");
   });  
 };
+
+// ping heroku app so that it is not put to sleep after 30 minutes of no call
+var pingHerokuApp = setInterval(function() {
+  http.get("https://fair-data.herokuapp.com/app/user/")
+}, 300000); // every 5 minutes (300000)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}. Follow link: `);

@@ -10,3 +10,8 @@
 ## Alternative project
 - MoodyElon is a dynamic NFT which changes baased on the sentiment of Elon's tweets
 - To enable the dynamicness, one needs Chainlink's Automation service (Upkeeper)
+
+## Next steps
+- generalise smart contract so that anyone can sell personal data fairly by registering url 
+- create an external adapter so that the fairData protocol firstly needs to authenticate before being able to send get reuqests
+-
