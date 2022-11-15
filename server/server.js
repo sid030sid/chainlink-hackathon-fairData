@@ -60,7 +60,7 @@ if(process.env.NODE_ENV === "production"){
 
 // ping heroku app so that it is not put to sleep after 30 minutes of no call
 var pingHerokuApp = setInterval(function() {
-  http.get("https://fair-data.herokuapp.com/app/user/")
+  http.get("http://fair-data.herokuapp.com/app/user/")
 }, 300000); // every 5 minutes (300000)
 
 app.listen(PORT, () => {
