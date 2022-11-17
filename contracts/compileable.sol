@@ -33,7 +33,7 @@ contract FairDataManager is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
     uint256 private fee;
 
-    constructor() payable ConfirmedOwner(msg.sender) {
+    constructor() ConfirmedOwner(msg.sender) {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         setChainlinkOracle(0xCC79157eb46F5624204f47AB42b3906cAA40eaB7); //chainlink's testnet oracle on goerli 
         fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
