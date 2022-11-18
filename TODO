@@ -1,2 +1,5 @@
 replace url with one of the examples given by chainlink proving that the issues lies with heroku api
+deploy final fdm contract to goerli and verify it
+add final fdm smart contract deployedto goerli in documentation
+make diagramm of current situation how data flows between data seekers, data owners and data providers as - and compare it to how fairdata wantsto do it
 get free dyno for heroku throgh student program in order to keep api running

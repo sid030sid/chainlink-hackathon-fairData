@@ -17,10 +17,10 @@ FairData is world's first trustless data provider powered by Ethereum and Chainl
 1. Clone repo
 2. Run ```npm install``` in root and client folder respectively
 3. Run ```npm run dev``` in root folder to get server and client running on localhost
-4. Login with MetaMask into client (note: client is not yet connected to FDM contract on Goerli)
+4. Login with MetaMask into client (note: client is not yet connected to FairData Manager contract on Goerli)
 
 ## Tech-Stack
-- Solidity for the underlying smart contract of FairData: the FairDatat Manager (FDM)
+- Solidity for the underlying smart contract of FairData: the FairData Manager (FDM) (click [here](https://fair-data.herokuapp.com/app/user/) for FDM on Goerli network)
 - React.js for client of FDM (not yet connected to deployed FDM contract on Goerli)
 - Ethers.js for web 3.0 functionality
 - MongoDb Atlas for an examplary database storing personal data 
