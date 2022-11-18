@@ -98,7 +98,7 @@ contract FairDataManager is ChainlinkClient, ConfirmedOwner {
         emit RequestAccepted(_requestId, requests[_requestId].from, requests[_requestId].to);
 
         //mark request as processed
-        requestProcessed[_requestId] = true;
+        requestProcessed[_requestId] = true; //TODO should be placed in forwardPersonalData once request is acutally processed (depends also on makingnexxt function internal)
 
         //next: the web 2.0 app calls the forwardPersonalData function --> TODO make it an internal procedure
     }   
@@ -108,7 +108,7 @@ contract FairDataManager is ChainlinkClient, ConfirmedOwner {
     //TODO get rid of _address input (only existing due to difficulty of casting address to string) --> if address castable to string than this can be an internal function
     function forwardPersonalData(uint _requestId, string memory _address) public returns (bytes32 requestId) {
         require(requests[_requestId].accepted, "Forwarding of personal data not authorized");
-        
+
         //get personal data (i.e. name) if owner of said personal data signs transaction
         Chainlink.Request memory req = buildChainlinkRequest("7d80a6386ef543a3abb52817f6707e3b", address(this), this.fulfillRequestPersonalData.selector);
         req.add('get', string.concat('https://fair-data.herokuapp.com/app/user/', _address));
