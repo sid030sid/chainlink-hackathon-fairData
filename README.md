@@ -8,6 +8,7 @@
 ## Tech-Stack
 - Solidity for the underlying smart contract of FairData Manager (FDM)
 - React.js for client of FDM (not yet connected to deployed FDM contract on Goerli)
+- Ethers.js for web 3.0 functionality
 - MongoDb Atlas for an examplary database storing personal data 
 - Express.js and Mongoose for the API of the examplary database (click [here](https://fair-data.herokuapp.com/app/user/) for public get endpoint)
 - Node.js for the underlying server of the API and the client

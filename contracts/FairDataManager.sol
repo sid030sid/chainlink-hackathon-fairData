@@ -112,7 +112,7 @@ contract FairDataManager is ChainlinkClient, ConfirmedOwner {
         //get personal data (i.e. name) if owner of said personal data signs transaction
         Chainlink.Request memory req = buildChainlinkRequest("7d80a6386ef543a3abb52817f6707e3b", address(this), this.fulfillRequestPersonalData.selector);
         req.add('get', string.concat('https://fair-data.herokuapp.com/app/user/', _address));
-        req.add('path', 'name'); //0, makes no sense but lets try it our
+        req.add('path', 'name'); 
 
         //Sends the request
         return sendChainlinkRequest(req, fee);
