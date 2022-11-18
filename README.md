@@ -1,4 +1,5 @@
-# Chainlink Fall Hackathon (October 14 - November 18): FairData
+# FairData
+### Chainlink Fall Hackathon (October 14 - November 18) 
 
 ## The problem your project addresses.
 
