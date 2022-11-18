@@ -1,4 +1,4 @@
-# Chainlink Fall Hackathon (October 14 - November 18): FairData Manager (FDM)
+# Chainlink Fall Hackathon (October 14 - November 18): FairData
 
 ## The problem your project addresses.
 
@@ -6,7 +6,7 @@
 
 ## Which technologies you used to do so.
 ## Tech-Stack
-- Solidity for the underlying smart contract of FairData Manager (FDM)
+- Solidity for the underlying smart contract of FairData: the FairDatat Manager (FDM)
 - React.js for client of FDM (not yet connected to deployed FDM contract on Goerli)
 - Ethers.js for web 3.0 functionality
 - MongoDb Atlas for an examplary database storing personal data 
