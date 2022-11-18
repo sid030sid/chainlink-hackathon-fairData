@@ -1,4 +1,4 @@
-# **FairData** - a Submission for the *Chainlink Fall Hackathon* (October 14 - November 18)
+# **FairData** (Chainlink Fall Hackathon 2022)
 
 ## The problem your project addresses.
 
