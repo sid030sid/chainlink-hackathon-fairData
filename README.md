@@ -48,4 +48,4 @@ FairData is world's first trustless data provider powered by Ethereum and Chainl
 3. get funding to turn FairData into real product
 
 ## Author and owner
-All code as well as intellectual and business property belongs to Sid Lamichhane. Feel free to reach out for collaboration and feedback: ```sid.lam@gmx.de```.
+All code as well as intellectual and business property belongs to Sid Lamichhane. Feel free to reach out for collaboration and feedback: ```sid.lam.1997@gmail.com```.
